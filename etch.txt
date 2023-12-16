@@ -1,0 +1,26 @@
+﻿STEP 1: Create a webpage with a 16x16 grid of square divs.
+	NOTE: Create the divs using JavaScript.
+	      It’s best to put your grid squares inside another “container” div (which can go directly in your HTML).
+
+I'm supposed to create a webpage that displays a 16 * 16 square div.
+The best way to create that many number of divs is by using a for loop.
+This also adds benefits in terms of flexibility and scalability incase we want to change the numberof squares.
+
+So the page loads, the browser calls a function createGrid(size).
+Inside this function is a for loop that has `size * size` as it's limit.
+Inside that for loop is a variable `gridSquare` that gets created as a `div` element.
+The `gridSquare` is then given a class `gridSquare` and appended to the `container`.
+The `container` has been declared already as a constant in the global scope.
+
+STEP 2: Set up a “hover” effect so that the grid divs change color when your mouse passes over them.
+
+To do this, one would create an event listener and add it to `gridSquare`.
+The event would be `mouseenter` and the functionwould changethe background to black.
+
+STEP 3: Add a button to the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before,
+
+We create an event listener functionfor thhe button and in that function, we would empty the container by making it's innerHTML = ''.
+Then we prompt the user to enter a number between 1 and 100 which would be used as `size` to create a new grid.
+Because we want the new grid to fit into the same space as the old one, we create a global function setSquareSize()
+This function divides the container width by the `size` and uses the result to set `gridSquare` width and height.
+We call setSquareSize(size) in createGrid();

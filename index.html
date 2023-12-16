@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Etch a Sketch</title>
+		<style>
+			body{
+				width: 100%;
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			#container{
+				width: 408px;
+				display: flex;
+				flex-wrap: wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<button onclick="resetGrid()">New grid</button>
+		<div id="container"></div>
+		<script>
+			const container = document.querySelector('#container');
+			//Main grid component.
+			function createGrid(size) {
+				for(i = 0; i < size * size; i++) {
+					const gridSquare = document.createElement('div');
+					gridSquare.setAttribute('class', 'gridSquare');
+					gridSquare.style = "border: 2px solid black; background: blue;"
+					gridSquare.addEventListener('mouseenter', () => {
+					gridSquare.style.backgroundColor = "black";
+					}); //Hover effect.
+					gridSquare.textContent = i;
+					container.appendChild(gridSquare);
+					
+				}
+				setSquareSize(size);
+			}
+			
+			//Customizable grid size functionality.
+			function setSquareSize(size) {
+				const squareSize = (400/size) - 2;
+
+				const gridSquares = document.querySelectorAll('.gridSquare');
+
+				gridSquares.forEach(
+					gridSquare => {
+						gridSquare.style.width = `${squareSize}px`;
+						gridSquare.style.height = `${squareSize}px`;
+					}
+				);
+				
+				container.style.width = `${squareSize}`
+				container.style.height = `${squareSize}`
+			}
+			
+			//Reset Button.
+			const button = document.querySelector('button');
+			function resetGrid() {
+				container.innerHTML = '';
+				const size = prompt('Please enter a number between 1 and 100');
+				if(size >= 1 && size <= 100){
+					createGrid(size);
+				} else {
+					alert('Please choose a number between 1 and 100');
+				}
+			}
+			
+		</script>
+	</body>
+</html>
